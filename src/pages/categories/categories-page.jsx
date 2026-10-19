@@ -4,9 +4,11 @@ import DataTable from "../../components/data-table/data-table";
 import EmptyState from "../../components/empty-state/empty-state";
 import PageHeader from "../../components/page-header/page-header";
 import Button from "../../components/ui/button";
-import { useGetCategories } from "../../hooks/use-categories";
+import { useGetCategories,useDeleteCategory } from "../../hooks/use-categories";
 
 function CategoriesPage() {
+ 
+ const { mutate: deleteCategory, isPending } = useDeleteCategory();
   const { data, isLoading, isError, error } = useGetCategories();
   const categories = data;
   const columns = [
@@ -51,7 +53,7 @@ function CategoriesPage() {
             Edit
           </Link>
 
-          <Button variant="danger">
+          <Button variant="danger" onClick={()=>{deleteCategory(category.id)}}>
             Delete
           </Button>
         </div>

@@ -11,12 +11,14 @@ function Button({
   className = "",
   type = "button",
   variant = "primary",
+  onClick,
   ...props
 }) {
   return (
     <button
       className={`font-extrabold transition disabled:cursor-not-allowed disabled:opacity-60 ${variants[variant] ?? variants.primary} ${className}`.trim()}
       type={type}
+      onClick={onClick}
       {...props}
     />
   );
